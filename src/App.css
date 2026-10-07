@@ -1,15 +1,11 @@
-/* ==========================================================================
-   NAVIGATION BAR STYLES
-   ========================================================================== */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #ffffff;
   border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
 }
 
 .navbar-container {
@@ -18,6 +14,7 @@
   justify-content: space-between;
   min-height: 72px;
   gap: var(--space-4);
+  position: relative;
 }
 
 .navbar-brand {
@@ -28,6 +25,7 @@
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--color-primary);
+  flex-shrink: 0;
 }
 
 .navbar-brand:hover {
@@ -48,6 +46,8 @@
   align-items: center;
   list-style: none;
   gap: var(--space-8);
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-link {
@@ -67,13 +67,16 @@
   font-weight: 600;
 }
 
+.navbar-mobile-cta {
+  display: none;
+}
+
 .navbar-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: 998;
+  top: 64px;
+  background-color: rgba(15, 23, 42, 0.55);
+  z-index: 999;
   animation: fadeInBackdrop 200ms ease forwards;
 }
 
@@ -81,6 +84,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -91,7 +95,7 @@
   align-items: center;
   gap: var(--space-3);
   position: relative;
-  z-index: 1001;
+  z-index: 1006;
 }
 
 .navbar-cta {
@@ -100,7 +104,6 @@
   font-size: 0.875rem;
 }
 
-/* Mobile Hamburger Toggle */
 .navbar-toggle {
   display: none;
   align-items: center;
@@ -149,9 +152,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ==========================================================================
-   HERO SECTION STYLES
-   ========================================================================== */
+
 .hero-section {
   position: relative;
   width: 100%;
@@ -255,7 +256,6 @@
   font-weight: 700;
 }
 
-/* Hero Right Visual (Pure CSS Consultation Workflow Card) */
 .hero-visual {
   display: flex;
   align-items: center;
@@ -382,9 +382,6 @@
   color: var(--color-text-muted);
 }
 
-/* ==========================================================================
-   ANCHOR TARGET / PLACEHOLDER SECTIONS FOR TESTING SMOOTH SCROLL
-   ========================================================================== */
 .section-placeholder {
   padding: var(--space-16) 0;
   border-bottom: 1px solid var(--color-border);
@@ -401,9 +398,6 @@
   margin-bottom: var(--space-2);
 }
 
-/* ==========================================================================
-   INTRODUCTION SECTION STYLES
-   ========================================================================== */
 .intro-section {
   position: relative;
   background-color: var(--color-surface);
@@ -465,7 +459,6 @@
   color: var(--color-text-muted);
 }
 
-/* Introduction Supporting Point Cards */
 .intro-points {
   display: flex;
   flex-direction: column;
@@ -530,9 +523,6 @@
   color: var(--color-text-muted);
 }
 
-/* ==========================================================================
-   SERVICES SECTION STYLES
-   ========================================================================== */
 .services-section {
   position: relative;
   background-color: var(--color-background);
@@ -708,9 +698,6 @@
   transform: translateX(4px);
 }
 
-/* ==========================================================================
-   CONSULTATION FORM SECTION STYLES
-   ========================================================================== */
 .consultation-section {
   position: relative;
   background-color: var(--color-surface);
@@ -822,7 +809,6 @@
   color: var(--color-text-muted);
 }
 
-/* Form Controls */
 .form-input,
 .form-select,
 .form-textarea {
@@ -891,7 +877,6 @@
   cursor: pointer;
 }
 
-/* Error States */
 .form-input-error {
   border-color: var(--color-error) !important;
   background-color: #fef2f2 !important;
@@ -926,7 +911,7 @@
   flex-shrink: 0;
 }
 
-/* Consent Checkbox */
+
 .form-consent-group {
   padding-top: var(--space-2);
 }
@@ -979,7 +964,6 @@
   outline-offset: 2px;
 }
 
-/* Actions */
 .form-actions {
   display: flex;
   justify-content: flex-start;
@@ -1024,14 +1008,12 @@
   }
 }
 
-/* Service Pre-select Highlight */
 .form-select-highlight select {
   border-color: var(--color-accent) !important;
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
   background-color: #eff6ff !important;
 }
 
-/* Form Helper & Counter */
 .form-label-row {
   display: flex;
   align-items: center;
@@ -1057,9 +1039,6 @@
   margin-top: 2px;
 }
 
-/* ==========================================================================
-   CONTACT SECTION STYLES
-   ========================================================================== */
 .contact-container {
   display: flex;
   flex-direction: column;
@@ -1100,9 +1079,6 @@
   width: 100%;
 }
 
-/* ==========================================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================================= */
 @media (max-width: 991px) {
   .hero-container {
     grid-template-columns: 1fr;
@@ -1147,16 +1123,19 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    padding-top: var(--space-10);
+    padding-top: var(--space-8);
     padding-bottom: var(--space-12);
   }
 
   .hero-title {
-    font-size: 2rem;
+    font-size: clamp(1.875rem, 6.5vw, 2.5rem);
+    line-height: 1.2;
+    word-break: break-word;
   }
 
   .hero-description {
     font-size: 1rem;
+    line-height: 1.6;
   }
 
   .hero-actions {
@@ -1167,10 +1146,31 @@
 
   .hero-actions .button {
     width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .hero-trust-badges {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: flex-start;
+  }
+
+  .hero-card {
+    padding: var(--space-5) var(--space-4);
+    max-width: 100%;
+  }
+
+  .navbar-desktop-cta {
+    display: none !important;
   }
 
   .navbar-toggle {
     display: flex;
+  }
+
+  .navbar-container {
+    min-height: 64px;
   }
 
   .navbar-nav {
@@ -1179,17 +1179,18 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-lg);
-    padding: var(--space-4) var(--space-6);
+    width: 100%;
+    background-color: #ffffff !important;
+    border-bottom: 2px solid var(--color-border);
+    box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.16);
+    padding: var(--space-4) var(--space-5) var(--space-6) var(--space-5);
     margin: 0;
+    z-index: 1005;
   }
 
   .navbar-nav.navbar-nav-open {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column;
     animation: navbarSlideDown 200ms ease forwards;
   }
 
@@ -1199,34 +1200,69 @@
     align-items: stretch;
     gap: var(--space-2);
     width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .navbar-nav .navbar-item {
+    width: 100%;
   }
 
   .navbar-nav .navbar-link {
     display: flex;
     align-items: center;
     width: 100%;
+    min-height: 48px;
     padding: 12px 16px;
     border-radius: var(--radius-md);
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 500;
     color: var(--color-secondary);
+    background-color: transparent;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
   }
 
-  .navbar-nav .navbar-link:hover {
+  .navbar-nav .navbar-link:hover,
+  .navbar-nav .navbar-link:focus {
     background-color: var(--color-background);
     color: var(--color-accent);
   }
 
-  .navbar-container {
-    min-height: 60px;
+  .navbar-nav .navbar-link.is-active {
+    background-color: #eff6ff;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .navbar-mobile-cta {
+    display: block !important;
+    width: 100%;
+    margin-top: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .navbar-mobile-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: var(--radius-md);
   }
 
   .intro-title {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    line-height: 1.25;
   }
 
   .intro-text {
     font-size: 1rem;
+    line-height: 1.6;
   }
 
   .intro-card {
@@ -1246,7 +1282,7 @@
   }
 
   .services-card {
-    padding: var(--space-6) var(--space-5);
+    padding: var(--space-6) var(--space-4);
   }
 
   .services-header {
@@ -1254,7 +1290,7 @@
   }
 
   .services-title {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
   }
 
   .services-description {
@@ -1266,7 +1302,7 @@
   }
 
   .consultation-title {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 5vw, 2rem);
   }
 
   .consultation-description {
@@ -1282,8 +1318,77 @@
     gap: var(--space-4);
   }
 
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px;
+  }
+
   .form-submit-btn {
     width: 100%;
+    min-height: 48px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .contact-map,
+  .contact-map iframe {
+    min-height: 280px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    min-height: 58px;
+    gap: var(--space-2);
+  }
+
+  .navbar-brand {
+    font-size: 1.125rem;
+  }
+
+  .navbar-logo-icon {
+    font-size: 1rem;
+  }
+
+  .hero-section {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-10);
+  }
+
+  .hero-title {
+    font-size: clamp(1.75rem, 7vw, 2.15rem);
+  }
+
+  .hero-trust-badges {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .intro-card {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .consultation-card {
+    padding: var(--space-5) var(--space-3);
+  }
+
+  .form-actions {
+    width: 100%;
+  }
+
+  .form-submit-btn {
+    width: 100%;
+    padding: 12px 16px;
+  }
+
+  .contact-item {
+    padding: var(--space-4);
   }
 }
 
@@ -1292,6 +1397,7 @@
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1311,4 +1417,3 @@
     transform: none;
   }
 }
-

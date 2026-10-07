@@ -61,10 +61,23 @@ const Navbar: React.FC = () => {
         }
     }, [])
 
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [isMobileMenuOpen])
+
     const handleScroll =
         (id: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
             event.preventDefault()
             setIsMobileMenuOpen(false)
+            document.body.style.overflow = ''
             setActiveSection(id)
 
             const target = document.getElementById(id)
@@ -105,7 +118,7 @@ const Navbar: React.FC = () => {
                 >
                     <ul className="navbar-links">
                         {NAV_ITEMS.map((item) => (
-                            <li key={item.id}>
+                            <li key={item.id} className="navbar-item">
                                 <a
                                     href={`#${item.id}`}
                                     className={`navbar-link ${activeSection === item.id ? 'is-active' : ''}`}
@@ -116,12 +129,22 @@ const Navbar: React.FC = () => {
                             </li>
                         ))}
                     </ul>
+
+                    <div className="navbar-mobile-cta">
+                        <a
+                            href="#consultation"
+                            className="button button-primary navbar-mobile-btn"
+                            onClick={handleScroll('consultation')}
+                        >
+                            Request a Consultation
+                        </a>
+                    </div>
                 </nav>
 
                 <div className="navbar-action">
                     <a
                         href="#consultation"
-                        className="button button-primary navbar-cta"
+                        className="button button-primary navbar-cta navbar-desktop-cta"
                         onClick={handleScroll('consultation')}
                     >
                         Get Started
@@ -149,7 +172,10 @@ const Navbar: React.FC = () => {
             {isMobileMenuOpen && (
                 <div
                     className="navbar-backdrop"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => {
+                        setIsMobileMenuOpen(false)
+                        document.body.style.overflow = ''
+                    }}
                     aria-hidden="true"
                 />
             )}

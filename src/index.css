@@ -76,11 +76,13 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 
   font-family: var(--font-family-base);
   font-size: 16px;
@@ -241,145 +243,7 @@ select {
   }
 }
 
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  width: 100%;
-
-  background: rgba(255, 255, 255, 0.96);
-
-  border-bottom: 1px solid var(--color-border);
-
-  box-shadow: var(--shadow-sm);
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.navbar-container {
-  display: flex;
-  align-items: center;
-
-  min-height: 72px;
-}
-
-
-/* ============================================
-   Navbar Brand
-   ============================================ */
-
-.navbar-brand {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 9px;
-
-  color: var(--color-primary);
-
-  font-size: 1.25rem;
-  font-weight: 700;
-
-  white-space: nowrap;
-}
-
-.navbar-brand:hover {
-  color: var(--color-primary);
-}
-
-.navbar-logo-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  color: var(--color-accent);
-
-  font-size: 0.95rem;
-
-  transition: transform var(--transition-normal);
-}
-
-.navbar-brand:hover .navbar-logo-icon {
-  transform: rotate(45deg);
-}
-
-.navbar-brand-text {
-  line-height: 1;
-}
-
-
-/* ============================================
-   Navbar Navigation
-   ============================================ */
-
-.navbar-nav {
-  margin-left: auto;
-  margin-right: var(--space-10);
-}
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-
-  gap: var(--space-8);
-
-  list-style: none;
-}
-
-.navbar-link {
-  position: relative;
-
-  display: inline-flex;
-  align-items: center;
-
-  min-height: 44px;
-
-  color: var(--color-text-muted);
-
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.navbar-link::after {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  bottom: 4px;
-
-  height: 2px;
-
-  border-radius: var(--radius-full);
-
-  background: var(--color-accent);
-
-  transform: scaleX(0);
-  transform-origin: center;
-
-  transition: transform var(--transition-fast);
-}
-
-.navbar-link:hover {
-  color: var(--color-primary);
-}
-
-.navbar-link:hover::after {
-  transform: scaleX(1);
-}
-
-
-.navbar-action {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-cta {
-  min-width: 124px;
-}
+/* Note: Navbar styles are consolidated and managed in App.css */
 
 
 .button {
@@ -786,30 +650,6 @@ select {
 
 
 @media (max-width: 768px) {
-  .navbar-container {
-    min-height: 64px;
-  }
-
-  .navbar-nav {
-    margin-right: var(--space-4);
-  }
-
-  .navbar-links {
-    gap: var(--space-4);
-  }
-
-  .navbar-link {
-    font-size: 0.875rem;
-  }
-
-  .navbar-cta {
-    min-width: auto;
-
-    padding: 10px 16px;
-
-    font-size: 0.875rem;
-  }
-
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -833,30 +673,6 @@ select {
   .container {
     padding-left: 16px;
     padding-right: 16px;
-  }
-
-  .navbar-container {
-    gap: var(--space-3);
-  }
-
-  .navbar-action {
-    margin-left: auto;
-  }
-
-  .navbar-cta {
-    min-height: 40px;
-
-    padding: 8px 14px;
-
-    font-size: 0.875rem;
-  }
-
-  .navbar-brand {
-    font-size: 1.1rem;
-  }
-
-  .navbar-logo-icon {
-    font-size: 0.85rem;
   }
 
   .footer-container {
