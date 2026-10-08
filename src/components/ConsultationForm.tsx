@@ -43,8 +43,8 @@ const FormError = ({ id, message }: FormErrorProps) => {
     }
 
     return (
-        <p id={id} className="form-error-msg" role="alert">
-            <span className="form-error-icon" aria-hidden="true">
+        <p id={id} className="mt-1.5 flex items-center gap-1.5 text-xs text-red-600 font-medium" role="alert">
+            <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-red-100 text-red-600 font-bold text-[10px]" aria-hidden="true">
                 !
             </span>
             {message}
@@ -235,55 +235,62 @@ const ConsultationForm = () => {
 
     const getInputClassName = (
         fieldName: keyof FormErrors,
-        baseClass = 'form-input'
+        isSelect = false
     ) => {
-        return `${baseClass} ${errors[fieldName] ? 'form-input-error' : ''
-            }`
+        const hasError = Boolean(errors[fieldName])
+        const base =
+            'w-full rounded-xl border text-sm text-slate-900 bg-white placeholder:text-slate-400 focus:outline-none transition-all duration-200'
+        const padding = isSelect
+            ? 'px-4 py-3 pr-10 appearance-none cursor-pointer'
+            : 'px-4 py-3'
+        const state = hasError
+            ? 'border-red-500 focus:border-red-600 focus:ring-4 focus:ring-red-100 bg-red-50/20'
+            : 'border-slate-300 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 hover:border-slate-400'
+
+        return `${base} ${padding} ${state}`
     }
 
     return (
         <section
             id="consultation"
-            className="section consultation-section"
+            className="py-20 lg:py-28 bg-white border-b border-slate-200"
             aria-labelledby="consultation-heading"
         >
-            <div className="container consultation-container">
-                <div className="consultation-header">
-                    <div className="consultation-eyebrow-wrapper">
-                        <span className="consultation-eyebrow">
-                            GET IN TOUCH
-                        </span>
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-2xl mx-auto text-center mb-12">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase text-blue-600 bg-blue-50 border border-blue-200/60 mb-3 shadow-xs">
+                        <span>GET IN TOUCH</span>
                     </div>
 
                     <h2
                         id="consultation-heading"
-                        className="consultation-title"
+                        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight"
                     >
                         Tell us about your project
                     </h2>
 
-                    <p className="consultation-description">
+                    <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
                         Share a few details about your requirements and
                         we&apos;ll use them to understand how we can help.
                     </p>
                 </div>
 
-                <div className="consultation-card">
+                <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 lg:p-12 shadow-xl shadow-slate-200/50">
                     <form
-                        className="consultation-form"
+                        className="space-y-6"
                         onSubmit={handleSubmit}
                         noValidate
                         aria-label="Consultation Request Form"
                     >
-                        <div className="form-grid">
-                            <div className="form-group">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
                                 <label
                                     htmlFor="fullName"
-                                    className="form-label"
+                                    className="block text-sm font-semibold text-slate-700 mb-2"
                                 >
                                     Full Name{' '}
                                     <span
-                                        className="form-required"
+                                        className="text-red-500"
                                         aria-hidden="true"
                                     >
                                         *
@@ -316,14 +323,14 @@ const ConsultationForm = () => {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            <div>
                                 <label
                                     htmlFor="email"
-                                    className="form-label"
+                                    className="block text-sm font-semibold text-slate-700 mb-2"
                                 >
                                     Email Address{' '}
                                     <span
-                                        className="form-required"
+                                        className="text-red-500"
                                         aria-hidden="true"
                                     >
                                         *
@@ -356,13 +363,13 @@ const ConsultationForm = () => {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            <div>
                                 <label
                                     htmlFor="company"
-                                    className="form-label"
+                                    className="block text-sm font-semibold text-slate-700 mb-2"
                                 >
                                     Company{' '}
-                                    <span className="form-optional">
+                                    <span className="text-xs font-normal text-slate-500">
                                         (Optional)
                                     </span>
                                 </label>
@@ -371,7 +378,7 @@ const ConsultationForm = () => {
                                     id="company"
                                     name="company"
                                     type="text"
-                                    className="form-input"
+                                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm text-slate-900 bg-white placeholder:text-slate-400 focus:outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100 hover:border-slate-400 transition-all duration-200"
                                     placeholder="Enter your company name"
                                     value={formData.company}
                                     onChange={handleChange}
@@ -380,14 +387,14 @@ const ConsultationForm = () => {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            <div>
                                 <label
                                     htmlFor="phone"
-                                    className="form-label"
+                                    className="block text-sm font-semibold text-slate-700 mb-2"
                                 >
                                     Phone Number{' '}
                                     <span
-                                        className="form-required"
+                                        className="text-red-500"
                                         aria-hidden="true"
                                     >
                                         *
@@ -419,34 +426,31 @@ const ConsultationForm = () => {
                                     message={errors.phone}
                                 />
                                 {!errors.phone && (
-                                    <span className="form-hint">
+                                    <span className="block mt-1.5 text-xs text-slate-500">
                                         e.g., +1 (555) 000-0000 or +91 98765 43210
                                     </span>
                                 )}
                             </div>
 
-                            <div className="form-group">
+                            <div>
                                 <label
                                     htmlFor="country"
-                                    className="form-label"
+                                    className="block text-sm font-semibold text-slate-700 mb-2"
                                 >
                                     Country{' '}
                                     <span
-                                        className="form-required"
+                                        className="text-red-500"
                                         aria-hidden="true"
                                     >
                                         *
                                     </span>
                                 </label>
 
-                                <div className="form-select-wrapper">
+                                <div className="relative">
                                     <select
                                         id="country"
                                         name="country"
-                                        className={getInputClassName(
-                                            'country',
-                                            'form-select'
-                                        )}
+                                        className={getInputClassName('country', true)}
                                         value={formData.country}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -474,6 +478,11 @@ const ConsultationForm = () => {
                                             )
                                         )}
                                     </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400" aria-hidden="true">
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </div>
                                 </div>
 
                                 <FormError
@@ -482,14 +491,14 @@ const ConsultationForm = () => {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            <div>
                                 <label
                                     htmlFor="service"
-                                    className="form-label"
+                                    className="block text-sm font-semibold text-slate-700 mb-2"
                                 >
                                     Service / Requirement{' '}
                                     <span
-                                        className="form-required"
+                                        className="text-red-500"
                                         aria-hidden="true"
                                     >
                                         *
@@ -497,16 +506,14 @@ const ConsultationForm = () => {
                                 </label>
 
                                 <div
-                                    className={`form-select-wrapper ${highlightService ? 'form-select-highlight' : ''
-                                        }`}
+                                    className={`relative rounded-xl transition-all duration-300 ${
+                                        highlightService ? 'ring-4 ring-blue-500/40' : ''
+                                    }`}
                                 >
                                     <select
                                         id="service"
                                         name="service"
-                                        className={getInputClassName(
-                                            'service',
-                                            'form-select'
-                                        )}
+                                        className={getInputClassName('service', true)}
                                         value={formData.service}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -534,6 +541,11 @@ const ConsultationForm = () => {
                                             )
                                         )}
                                     </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400" aria-hidden="true">
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </div>
                                 </div>
 
                                 <FormError
@@ -543,15 +555,15 @@ const ConsultationForm = () => {
                             </div>
                         </div>
 
-                        <div className="form-group form-group-full">
-                            <div className="form-label-row">
+                        <div className="space-y-2">
+                            <div className="flex items-center justify-between">
                                 <label
                                     htmlFor="message"
-                                    className="form-label"
+                                    className="block text-sm font-semibold text-slate-700"
                                 >
                                     Message{' '}
                                     <span
-                                        className="form-required"
+                                        className="text-red-500"
                                         aria-hidden="true"
                                     >
                                         *
@@ -560,10 +572,11 @@ const ConsultationForm = () => {
 
                                 {formData.message.length > 0 && (
                                     <span
-                                        className={`form-char-count ${formData.message.trim().length >= 10
-                                            ? 'is-valid'
-                                            : ''
-                                            }`}
+                                        className={`text-xs font-medium ${
+                                            formData.message.trim().length >= 10
+                                                ? 'text-emerald-600'
+                                                : 'text-slate-400'
+                                        }`}
                                         aria-live="polite"
                                     >
                                         {formData.message.trim().length} / 10 min characters
@@ -575,10 +588,7 @@ const ConsultationForm = () => {
                                 id="message"
                                 name="message"
                                 rows={5}
-                                className={getInputClassName(
-                                    'message',
-                                    'form-textarea'
-                                )}
+                                className={`${getInputClassName('message')} resize-y`}
                                 placeholder="Tell us about your project, goals, challenges, or requirements..."
                                 value={formData.message}
                                 onChange={handleChange}
@@ -599,19 +609,20 @@ const ConsultationForm = () => {
                             />
                         </div>
 
-                        <div className="form-group form-group-full form-consent-group">
+                        <div className="space-y-1">
                             <label
                                 htmlFor="consent"
-                                className={`form-consent-label ${errors.consent
-                                    ? 'form-consent-error'
-                                    : ''
-                                    }`}
+                                className={`flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition-all ${
+                                    errors.consent
+                                        ? 'border-red-400 bg-red-50/20'
+                                        : 'border-slate-200 bg-slate-50/50 hover:bg-slate-50'
+                                }`}
                             >
                                 <input
                                     id="consent"
                                     name="consent"
                                     type="checkbox"
-                                    className="form-checkbox"
+                                    className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                                     checked={formData.consent}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
@@ -625,11 +636,11 @@ const ConsultationForm = () => {
                                     }
                                 />
 
-                                <span className="form-consent-text">
+                                <span className="text-sm text-slate-700 leading-snug">
                                     I agree to be contacted regarding my
                                     consultation request.{' '}
                                     <span
-                                        className="form-required"
+                                        className="text-red-500"
                                         aria-hidden="true"
                                     >
                                         *
@@ -643,17 +654,17 @@ const ConsultationForm = () => {
                             />
                         </div>
 
-                        <div className="form-actions">
+                        <div className="pt-2">
                             <button
                                 type="submit"
                                 id="submit-consultation-btn"
-                                className="button button-primary form-submit-btn"
+                                className="w-full sm:w-auto min-w-[240px] inline-flex items-center justify-center px-8 py-4 rounded-xl text-base font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 hover:shadow-xl hover:shadow-blue-600/40 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 cursor-pointer"
                                 disabled={isSubmitting}
                                 aria-busy={isSubmitting}
                             >
                                 {isSubmitting ? (
-                                    <span className="btn-loading-content">
-                                        <span className="spinner" aria-hidden="true" />
+                                    <span className="inline-flex items-center gap-2">
+                                        <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" aria-hidden="true" />
                                         Submitting Request...
                                     </span>
                                 ) : (

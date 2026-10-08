@@ -4,29 +4,29 @@ const Contact: React.FC = () => {
     return (
         <section
             id="contact"
-            className="section contact-section"
+            className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200"
             aria-labelledby="contact-heading"
         >
-            <div className="container contact-container">
-                <div className="contact-header">
-                    <div className="contact-eyebrow-wrapper">
-                        <span className="contact-eyebrow">GET IN TOUCH</span>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-2xl mx-auto text-center mb-16">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase text-blue-600 bg-blue-50 border border-blue-200/60 mb-3 shadow-xs">
+                        <span>GET IN TOUCH</span>
                     </div>
 
-                    <h2 id="contact-heading" className="contact-title">
+                    <h2 id="contact-heading" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
                         Let&apos;s start a conversation.
                     </h2>
 
-                    <p className="contact-description">
+                    <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
                         Have a question or want to discuss your project? Reach out to our
                         team or visit our office.
                     </p>
                 </div>
 
-                <div className="contact-grid">
-                    <div className="contact-info">
-                        <div className="contact-item">
-                            <div className="contact-icon" aria-hidden="true">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <div className="lg:col-span-5 flex flex-col gap-5">
+                        <div className="p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-lg transition-all duration-300 flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 shadow-xs" aria-hidden="true">
                                 <svg
                                     width="22"
                                     height="22"
@@ -42,17 +42,17 @@ const Contact: React.FC = () => {
                                 </svg>
                             </div>
 
-                            <div className="contact-item-details">
-                                <h3>Email</h3>
-                                <a href="mailto:hello@consultpro.example.com">
+                            <div>
+                                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Email</h3>
+                                <a href="mailto:hello@consultpro.example.com" className="text-base font-bold text-slate-900 hover:text-blue-600 transition-colors">
                                     hello@consultpro.example.com
                                 </a>
-                                <span className="contact-subtext">Typically replies within 24 hours</span>
+                                <span className="block text-xs text-slate-500 mt-1">Typically replies within 24 hours</span>
                             </div>
                         </div>
 
-                        <div className="contact-item">
-                            <div className="contact-icon" aria-hidden="true">
+                        <div className="p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-lg transition-all duration-300 flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 shadow-xs" aria-hidden="true">
                                 <svg
                                     width="22"
                                     height="22"
@@ -67,17 +67,17 @@ const Contact: React.FC = () => {
                                 </svg>
                             </div>
 
-                            <div className="contact-item-details">
-                                <h3>Phone</h3>
-                                <a href="tel:+911234567890">
+                            <div>
+                                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Phone</h3>
+                                <a href="tel:+911234567890" className="text-base font-bold text-slate-900 hover:text-blue-600 transition-colors">
                                     +91 12345 67890
                                 </a>
-                                <span className="contact-subtext">Mon – Fri, 9:00 AM – 6:00 PM IST</span>
+                                <span className="block text-xs text-slate-500 mt-1">Mon – Fri, 9:00 AM – 6:00 PM IST</span>
                             </div>
                         </div>
 
-                        <div className="contact-item">
-                            <div className="contact-icon" aria-hidden="true">
+                        <div className="p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-lg transition-all duration-300 flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 shadow-xs" aria-hidden="true">
                                 <svg
                                     width="22"
                                     height="22"
@@ -93,9 +93,9 @@ const Contact: React.FC = () => {
                                 </svg>
                             </div>
 
-                            <div className="contact-item-details">
-                                <h3>Office</h3>
-                                <p>
+                            <div>
+                                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Office</h3>
+                                <p className="text-sm text-slate-700 leading-relaxed">
                                     Level 4, Connaught Place, Barakhamba Road,
                                     <br />
                                     New Delhi, 110001, India
@@ -104,7 +104,7 @@ const Contact: React.FC = () => {
                                     href="https://maps.google.com/?q=Connaught+Place,New+Delhi,India"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="contact-map-link"
+                                    className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 mt-2"
                                 >
                                     Get Directions &rarr;
                                 </a>
@@ -112,12 +112,12 @@ const Contact: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="contact-map-wrapper">
-                        <div className="contact-map">
+                    <div className="lg:col-span-7">
+                        <div className="rounded-2xl border border-slate-200 overflow-hidden shadow-lg bg-white h-full min-h-[350px]">
                             <iframe
                                 title="Office location on Google Maps"
                                 src="https://www.google.com/maps?q=New+Delhi,India&output=embed"
-                                className="contact-map-iframe"
+                                className="w-full h-full min-h-[350px] border-0"
                                 loading="lazy"
                                 allowFullScreen
                                 referrerPolicy="no-referrer-when-downgrade"

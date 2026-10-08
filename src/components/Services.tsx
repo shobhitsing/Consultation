@@ -220,54 +220,59 @@ const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
   return (
     <section
       id="services"
-      className="section services-section"
+      className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200"
       aria-labelledby="services-heading"
     >
-      <div className="container services-container">
-        <div className="services-header">
-          <div className="services-eyebrow-wrapper">
-            <span className="services-eyebrow">WHAT WE CAN HELP WITH</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase text-blue-600 bg-blue-50 border border-blue-200/60 mb-3 shadow-xs">
+            <span>WHAT WE CAN HELP WITH</span>
           </div>
 
-          <h2 id="services-heading" className="services-title">
+          <h2 id="services-heading" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
             Solutions tailored to your goals
           </h2>
 
-          <p className="services-description">
+          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
             Explore our areas of expertise and choose the service that best
             matches your current needs.
           </p>
         </div>
 
         <div
-          className="services-grid"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           role="list"
           aria-label="Available consultation services"
         >
           {SERVICES.map((service) => (
             <article
               key={service.id}
-              className="services-card"
+              className="group relative rounded-2xl border border-slate-200/90 bg-white p-7 sm:p-8 hover:border-blue-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               role="listitem"
             >
-              <div className="services-card-icon" aria-hidden="true">
-                {renderServiceIcon(service.icon)}
+              <div>
+                <div className="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-sm" aria-hidden="true">
+                  {renderServiceIcon(service.icon)}
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  {service.title}
+                </h3>
+
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  {service.description}
+                </p>
               </div>
 
-              <div className="services-card-body">
-                <h3 className="services-card-title">{service.title}</h3>
-                <p className="services-card-desc">{service.description}</p>
-              </div>
-
-              <div className="services-card-action">
+              <div className="pt-4 border-t border-slate-100">
                 <button
                   type="button"
-                  className="button button-secondary services-card-button"
+                  className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 bg-slate-50 hover:bg-blue-600 hover:text-white group/btn transition-all duration-200 active:scale-95 cursor-pointer"
                   onClick={() => handleServiceSelect(service)}
                   aria-label={`Discuss ${service.title} service`}
                 >
                   <span>Discuss This Service</span>
-                  <span className="services-button-arrow" aria-hidden="true">
+                  <span className="transition-transform duration-200 group-hover/btn:translate-x-1" aria-hidden="true">
                     &rarr;
                   </span>
                 </button>

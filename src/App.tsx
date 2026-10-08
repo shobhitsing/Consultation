@@ -6,11 +6,10 @@ import Services from './components/Services'
 import ConsultationForm from './components/ConsultationForm'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import './App.css'
 
 function App() {
   return (
-    <div className="app-root">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white">
       <ToastContainer
         position="top-right"
         autoClose={4000}
